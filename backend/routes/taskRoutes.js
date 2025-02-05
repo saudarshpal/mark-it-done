@@ -7,7 +7,7 @@ const authMiddleware = require('../middlewares/authmiddleware');
 router.use(authMiddleware);
 
 // Create a new task
-//router.post('/', taskController.createTask);
+router.post('/', taskController.createTask);
 
 // Get all tasks for the logged-in user
 router.get('/', taskController.getTasks);
