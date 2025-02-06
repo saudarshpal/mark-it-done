@@ -14,7 +14,7 @@ const AddTask = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:PORT/api/tasks',
+        `${process.env.REACT_APP_API_BASE_URL}/api/tasks`,
         { title, description, dueDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );

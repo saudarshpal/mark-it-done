@@ -15,7 +15,7 @@ const TaskItem = ({ task, fetchTasks }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:PORT/api/tasks/${task._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`,
         { status: 'completed' },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -29,7 +29,7 @@ const TaskItem = ({ task, fetchTasks }) => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:PORT/api/tasks/${task._id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks(); // Refresh the task list
@@ -43,7 +43,7 @@ const TaskItem = ({ task, fetchTasks }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:PORT/api/tasks/${task._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`,
         editedTask,
         { headers: { Authorization: `Bearer ${token}` } }
       );

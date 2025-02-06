@@ -16,7 +16,7 @@ const EditTask = () => {
     const fetchTask = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:PORT/api/tasks/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTask(response.data);
@@ -33,7 +33,7 @@ const EditTask = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:PORT/api/tasks/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/tasks/${id}`,
         task,
         { headers: { Authorization: `Bearer ${token}` } }
       );
