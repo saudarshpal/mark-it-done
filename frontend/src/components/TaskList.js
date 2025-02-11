@@ -7,20 +7,6 @@ const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
 
-  const fetchTasks = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setTasks(response.data);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-      navigate('/login');
-    }
-  };
-
-
   useEffect(() => {
     async function fetchTasks() {
       try {
