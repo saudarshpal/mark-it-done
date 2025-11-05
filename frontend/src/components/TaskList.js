@@ -7,9 +7,14 @@ const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
 
+ // Fetch tasks function
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -20,22 +25,9 @@ const TaskList = () => {
     }
   };
 
-
+  // Fetch tasks when component mounts
   useEffect(() => {
-    async function fetchTasks() {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setTasks(response.data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-        navigate('/login');
-      }
-    };
-    return fetchTasks;
-    
+    fetchTasks();
   }, [navigate]);
 
   return (
