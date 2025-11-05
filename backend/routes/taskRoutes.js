@@ -13,9 +13,12 @@ router.post('/', taskController.createTask);
 router.get('/', taskController.getTasks);
 
 // Update a task
-router.put('/:id', taskController.updateTask);
+router.put('/update/:id', taskController.markComplete);
 
 // Delete a task
-router.delete('/:id', taskController.deleteTask);
+router.delete('/delete/:id', taskController.deleteTask);
+
+
+router.get('/user',taskController.getUser)
 
 module.exports = router;
