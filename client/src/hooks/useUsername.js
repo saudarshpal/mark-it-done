@@ -6,7 +6,7 @@ const useUsername = () => {
     const [username,setUsername] = useState('')
     const getUser = async()=>{
         try{
-            await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/tasks/user`,{
+           const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/tasks/user`,{
             headers : {
             Authorization : "Bearer "+localStorage.getItem('token')
             }
