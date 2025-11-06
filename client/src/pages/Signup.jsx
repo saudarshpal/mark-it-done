@@ -26,7 +26,7 @@ const Signup = () => {
             <InputBox title={"Password"} placeholder={"123456"} onChange={e=>setPassword(e.target.value)}></InputBox>
             <Button buttonlabel="Sign Up" onClick={async()=>{
               try{
-                const response = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/api/auth/signup/`,{
+                const response = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/api/auth/signup`,{
                   username,email,password})
                 localStorage.setItem('token',response.data.token)
                 setAuthenticated(true)
