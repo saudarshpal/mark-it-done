@@ -3,30 +3,14 @@ import User from '../components/User'
 import TodoCreate from '../components/TodoCreate'
 import TodoDashboard from '../components/TodoDashboard'
 import TodosContext from '../context/TodosContext'
-import { useState,useEffect, useContext } from 'react'
-import axios from 'axios'
+import { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
+import useTodos from '../hooks/useTodos'
 
 
 const Homepage = () => {
-  const [todos,setTodos] = useState([])
+  const {todos,fetchTodos} = useTodos()
   const {setAuthenticated} = useContext(AuthContext)
-  const fetchTodos = async()=>{
-        try{
-            const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/tasks`,{
-            headers : {
-                Authorization : "Bearer "+ localStorage.getItem('token')
-                }
-            })
-            setTodos(response.data.tasks)
-        }catch(err){
-            console.log(err)
-        }
-    }
-    useEffect(()=>{
-      fetchTodos()
-    },[]) 
-
   return (
    <div className="bg-stone-900 h-screen grid grid-cols-3 items-center">
       <div className='col-span-1 flex items-center justify-center h-full'>

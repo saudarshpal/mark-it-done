@@ -1,19 +1,9 @@
-import { useEffect, useState } from 'react'
 import user from '../assets/user.png'
-import axios from 'axios'
+import useUsername from '../hooks/useUsername'
+
+
 const User = () => {
-  const [username,setUsername] = useState('')
-  useEffect(()=>{
-    const getUser = async()=>{
-      const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/tasks/user`,{
-        headers : {
-          Authorization : "Bearer "+localStorage.getItem('token')
-        }
-      })
-      setUsername(response.data.user.username)
-    }
-    getUser()
-  })
+  const {username} = useUsername()
   return (
     <div className="flex flex-1 gap-3 items-center">
         <img src={user}/>
